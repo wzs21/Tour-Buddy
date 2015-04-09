@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="24dp"
+    android:weightSum="2"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/textViewNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Note"
+        android:textSize="18dp"
+        android:layout_weight="1">
+    </TextView>
+<!--
+    <TextView
+        android:id="@+id/textViewBuilding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="building"
+        android:textSize="18dp"
+        android:layout_weight="1">
+    </TextView> -->
+
+</LinearLayout>

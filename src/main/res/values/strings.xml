@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tour Buddy</string>
+    <string name="title_activity_map_view">CampusMap</string>
+    <string name="loadingDirectionsString">Getting Directions</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+    <item >Where Am I?</item>
+    <item >Add Note</item>
+    <item >View Notes</item>
+    <item >Visited Buildings</item>
+    <item >Checkpoints</item>
+    <item > </item>
+    <item >Settings</item>
+    <item >About</item>
+</string-array>
+
+    <string name="TextViewInfoHeaderString">Info Detail View</string>
+</resources>
