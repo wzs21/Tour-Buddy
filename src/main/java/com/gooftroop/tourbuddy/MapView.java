@@ -18,7 +18,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -65,6 +69,7 @@ public class MapView extends FragmentActivity implements GoogleMap.OnMarkerClick
      */
     private HashMap<CampusLocation, Boolean> locationToVisited = new HashMap<CampusLocation, Boolean>();
 
+    private ActionBarDrawerToggle mDrawerToggle;
     private String[] mDrawerItemNames;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -84,10 +89,43 @@ public class MapView extends FragmentActivity implements GoogleMap.OnMarkerClick
     private Polyline polyline;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+    //Called when invalidateOptionsMenu() is invoked
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // If the nav drawer is open, hide action items related to the content view
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        menu.findItem(R.id.search).setVisible(!drawerOpen);
+        return super.onPrepareOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.search){
+            //do search
+
+            return true;
+        }
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_images_layout);
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         setVariables();
 
         //Initialize to Sweeney for App Demo
@@ -95,6 +133,23 @@ public class MapView extends FragmentActivity implements GoogleMap.OnMarkerClick
         mDrawerItemNames = getResources().getStringArray(R.array.nav_drawer_items);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+
+
+                invalidateOptionsMenu();
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         // Set the adapter for the list view
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
@@ -118,7 +173,7 @@ public class MapView extends FragmentActivity implements GoogleMap.OnMarkerClick
         setupLocationListener();
         new UpdateDatabase(curActivity).execute();
 
-        //new VisitLocation(curActivity, dbLocations.get(0)).execute();
+        new VisitLocation(curActivity, dbLocations.get(0)).execute();
     }
 
     private void setVariables()

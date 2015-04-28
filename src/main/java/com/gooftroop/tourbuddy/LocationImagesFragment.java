@@ -49,6 +49,7 @@ public class LocationImagesFragment extends Fragment {
         ImageView imageView = (ImageView) view.findViewById(R.id.imageViewDetailImage);
         imageView.setImageResource(imageResId);
 
+
         return view;
     }
 

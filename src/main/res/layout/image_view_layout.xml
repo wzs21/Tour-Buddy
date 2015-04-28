@@ -10,6 +10,7 @@
         android:text="Iowa State University is a public land-grant university founded in 1858."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:layout_margin="8dp"/>
 
     <ImageView
