@@ -21,4 +21,8 @@
 </string-array>
 
     <string name="TextViewInfoHeaderString">Info Detail View</string>
+    <string name="title_activity_search_building">Search</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

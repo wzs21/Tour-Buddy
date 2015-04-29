@@ -24,29 +24,31 @@
 
         <activity
             android:name=".MapView"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_map_view"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" >
         </activity>
-
         <activity
             android:name=".SplashScreen"
-            android:screenOrientation="portrait"
             android:label="Tour Buddy"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".NoteListActivity"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_map_view"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".SearchBuildingActivity"
+            android:label="@string/title_activity_search_building" >
         </activity>
     </application>
 

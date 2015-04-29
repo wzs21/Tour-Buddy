@@ -104,7 +104,8 @@ public class MapView extends FragmentActivity implements GoogleMap.OnMarkerClick
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.search){
-            //do search
+            Intent i = new Intent(this, SearchBuildingActivity.class);
+            startActivityForResult(i, 515);
 
             return true;
         }
@@ -769,5 +770,20 @@ public class MapView extends FragmentActivity implements GoogleMap.OnMarkerClick
         }
     }
 
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == 515) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                String buildingName = data.getStringExtra("buildingName");
+                //TODO select correct building
+                Toast toast = Toast.makeText(this, buildingName, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+    }
 }
 
